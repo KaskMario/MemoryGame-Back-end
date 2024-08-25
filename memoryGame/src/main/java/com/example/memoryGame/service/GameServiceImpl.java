@@ -66,8 +66,6 @@ public class GameServiceImpl implements GameService {
     public Game endGame(Integer gameId) {
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(() -> new IllegalArgumentException("Game not found"));
-
-        // Ensure the game is not already ended
         if (game.getStatus() == GameStatus.COMPLETED) {
             throw new IllegalStateException("Game is already completed");
         }
